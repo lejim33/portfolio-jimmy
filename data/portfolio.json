@@ -181,6 +181,109 @@
         }
       },
       {
+        "id": "projet-karte",
+        "slug": "karte",
+        "title": "Karte",
+        "shortDescription": "Application web IA qui transforme automatiquement des cours en flashcards, quiz, examens blancs et plannings de révision personnalisés.",
+        "coverImage": "/uploads/KARTE/COVER%20KARTE.png",
+        "tags": [
+          "Application web",
+          "IA",
+          "EdTech",
+          "UI/UX",
+          "Product design"
+        ],
+        "date": "2026-05",
+        "client": "Projet personnel",
+        "featured": false,
+        "published": true,
+        "detail": {
+          "fullDescription": "Karte est une application web de révision assistée par IA qui transforme automatiquement des cours bruts en supports d'apprentissage interactifs : flashcards, quiz, QCM, examens blancs et plannings de révision personnalisés. L'objectif est de permettre à un étudiant de passer d'un PDF, d'un diaporama, de notes ou d'un copier-coller à une vraie session de révision en moins de deux minutes.",
+          "images": [
+            "/uploads/KARTE/KARTE%20LOGO.png",
+            "/uploads/KARTE/KARTE%20ICONE.png",
+            "/uploads/KARTE/icon-pdf.png",
+            "/uploads/KARTE/icon-notebook.png",
+            "/uploads/KARTE/icon-flashcard.png",
+            "/uploads/KARTE/icon-check.png",
+            "/uploads/KARTE/icon-calendar.png",
+            "/uploads/KARTE/icon-ai-brain.png",
+            "/uploads/KARTE/icon-trophy.png",
+            "/uploads/KARTE/icon-target-1311d609.png",
+            "/uploads/KARTE/icon-progress.png",
+            "/uploads/KARTE/screen%20landing%20page/LANDING%20PAGE1.png",
+            "/uploads/KARTE/screen%20landing%20page/LANDING%20PAGE2.png",
+            "/uploads/KARTE/screen%20landing%20page/LANDING%20PAGE3.png",
+            "/uploads/KARTE/screen%20landing%20page/LANDING%20PAGE4.png",
+            "/uploads/KARTE/screen%20dashboard/ACCUEIL%20DASHBOARD.png",
+            "/uploads/KARTE/screen%20dashboard/DECK%20FLASHCARD.png",
+            "/uploads/KARTE/screen%20dashboard/FLASHCARD%20QUESTION.png",
+            "/uploads/KARTE/screen%20dashboard/FLASHCARD%20REPONSE.png",
+            "/uploads/KARTE/screen%20dashboard/QUIZZ%20QUESTION.png",
+            "/uploads/KARTE/screen%20dashboard/QUIZZ%20VUE%20GLOBALE.png"
+          ],
+          "context": "Projet personnel EdTech : création d'un prototype d'application web de révision assistée par IA, de la landing page au dashboard produit.",
+          "tools": [
+            "Codex",
+            "Claude Code",
+            "Next.js",
+            "Supabase",
+            "DeepSeek V4 Lite",
+            "GitHub",
+            "Vercel"
+          ],
+          "results": "Un prototype complet positionné comme un coach de révision intelligent : landing page, dashboard, decks, flashcards, quiz et suivi de progression.",
+          "link": "",
+          "challenge": "Les étudiants ont souvent des cours longs et peu de temps pour fabriquer eux-mêmes des fiches de révision. Le vrai frein n'est pas seulement de créer des cartes, mais de savoir quoi réviser maintenant, dans quel ordre, et avec quelle méthode.",
+          "solution": "Karte réduit la friction entre le cours brut et la session de révision. L'utilisateur importe son document, l'IA structure le contenu, génère les supports d'apprentissage, puis guide la progression grâce au suivi des lacunes, à la répétition espacée et aux modes rapides comme contrôle demain.",
+          "role": "Product designer & développeur",
+          "duration": "Prototype web",
+          "stats": [
+            {
+              "value": "<2 min",
+              "label": "pour passer du cours brut à une session de révision"
+            },
+            {
+              "value": "5",
+              "label": "formats générés : flashcards, quiz, QCM, examens, planning"
+            },
+            {
+              "value": "1",
+              "label": "coach IA pour guider les priorités et les lacunes"
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Positionnement produit",
+              "description": "Définition d'un assistant de révision plus complet qu'un simple générateur de flashcards, à mi-chemin entre productivité et coach IA."
+            },
+            {
+              "step": "02",
+              "title": "Parcours landing page",
+              "description": "Construction d'une promesse claire : importer un cours, comprendre ce que l'IA génère, puis lancer une révision en moins de deux minutes."
+            },
+            {
+              "step": "03",
+              "title": "Dashboard de révision",
+              "description": "Création d'un espace centralisé avec progression, decks, documents récents, quiz, points faibles et objectif hebdomadaire."
+            },
+            {
+              "step": "04",
+              "title": "Modes d'apprentissage",
+              "description": "Déclinaison des écrans de flashcards, réponses, quiz et vue globale pour couvrir les usages de révision rapide comme approfondie."
+            },
+            {
+              "step": "05",
+              "title": "Stack et déploiement",
+              "description": "Développement assisté par Codex et Claude Code, versionné avec GitHub, déployé sur Vercel, connecté à Supabase et alimenté par DeepSeek V4 Lite."
+            }
+          ],
+          "testimonial": null,
+          "color": "#5847f6"
+        }
+      },
+      {
         "id": "projet-1777801513941",
         "slug": "crm-btp",
         "title": "Application CRM",

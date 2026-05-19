@@ -8,6 +8,7 @@ import RammellzeeDetailClient from "./RammellzeeDetailClient";
 import ProjetFacadeDetailClient from "./ProjetFacadeDetailClient";
 import LaBelleFinitionDetailClient from "./LaBelleFinitionDetailClient";
 import CervoDetailClient from "./CervoDetailClient";
+import KarteDetailClient from "./KarteDetailClient";
 
 function getPortfolioData(): PortfolioData {
   const filePath = path.join(process.cwd(), "data", "portfolio.json");
@@ -58,6 +59,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   if (slug === "cervo") {
     return <CervoDetailClient project={project} allProjects={data.projects.items} />;
+  }
+
+  if (slug === "karte") {
+    return <KarteDetailClient project={project} allProjects={data.projects.items} />;
   }
 
   if (slug === "rammellzee") {
