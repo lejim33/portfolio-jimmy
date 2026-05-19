@@ -1,26 +1,205 @@
+@import url("https://api.fontshare.com/v2/css?f[]=garet@400,700,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --font-body: var(--font-inter), "Inter", sans-serif;
+  --font-heading: var(--font-syne), "Syne", sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #6366f1;
+  --color-accent: #f43f5e;
+  --color-background: #ffffff;
+  --color-text: #0f172a;
+  --border-radius: 1rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Dark mode ── */
+.dark {
+  --color-background: #0a0a0f;
+  --color-text: #f1f5f9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark body {
+  background: var(--color-background);
+  color: var(--color-text);
 }
+
+.dark .bg-white { background-color: #13131a !important; }
+.dark .bg-gray-50\/50 { background-color: #0f0f18 !important; }
+.dark .bg-gray-50 { background-color: #13131a !important; }
+.dark .border-gray-100 { border-color: #1e1e2e !important; }
+.dark .border-gray-200 { border-color: #1e1e2e !important; }
+.dark .text-gray-500 { color: #94a3b8 !important; }
+.dark .text-gray-400 { color: #64748b !important; }
+.dark .text-gray-600 { color: #94a3b8 !important; }
+.dark .text-gray-700 { color: #cbd5e1 !important; }
+.dark .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+.dark .shadow-xl { box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important; }
+.dark .shadow-2xl { box-shadow: 0 25px 50px rgba(0,0,0,0.6) !important; }
+.dark .bg-white\/80 { background-color: rgba(19,19,26,0.85) !important; }
+.dark .hover\:bg-gray-100:hover { background-color: #1e1e2e !important; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Fluid typography (portfolio public uniquement, pas l'admin) ── */
+main h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+main h2 { font-size: clamp(2rem, 4.5vw, 3.75rem); }
+main h3 { font-size: clamp(1.25rem, 2.5vw, 1.875rem); }
+main p, main li { font-size: clamp(0.9rem, 1.4vw, 1.125rem); }
+
+/* ── Custom cursor ── */
+.custom-cursor * {
+  cursor: none;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+  opacity: 0.5;
+}
+
+/* ── Glassmorphism card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.dark .glass-card {
+  background: rgba(19, 19, 26, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Focus visible (keyboard nav) ── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Floating label fields ── */
+.float-label-group {
+  position: relative;
+}
+.float-label-group input,
+.float-label-group textarea {
+  padding-top: 1.4rem;
+  padding-bottom: 0.4rem;
+}
+.float-label-group label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: left top;
+}
+.float-label-group textarea ~ label {
+  top: 1rem;
+  transform: none;
+}
+.float-label-group input:focus ~ label,
+.float-label-group input:not(:placeholder-shown) ~ label,
+.float-label-group textarea:focus ~ label,
+.float-label-group textarea:not(:placeholder-shown) ~ label {
+  top: 0.55rem;
+  transform: scale(0.75);
+  color: var(--color-primary);
+}
+.float-label-group textarea:focus ~ label,
+.float-label-group textarea:not(:placeholder-shown) ~ label {
+  transform: scale(0.75) translateY(-0.25rem);
+}
+
+/* ── Skill bar animation ── */
+@keyframes skill-fill {
+  from { width: 0%; }
+  to { width: var(--skill-level); }
+}
+.skill-bar-fill {
+  animation: skill-fill 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  width: 0%;
+}
+
+/* ── View transitions (page navigation) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* ── Skip link (a11y) ── */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 0;
 }

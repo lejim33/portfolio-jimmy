@@ -1,0 +1,591 @@
+{
+  "meta": {
+    "siteTitle": "Mon Portfolio",
+    "siteDescription": "Portfolio de Jimmy Guillot — BTS Communication",
+    "favicon": "/favicon.ico",
+    "ogImage": "/og-image.jpg",
+    "lang": "fr"
+  },
+  "theme": {
+    "primaryColor": "#6366f1",
+    "accentColor": "#666666",
+    "backgroundColor": "#ffffff",
+    "textColor": "#0f172a",
+    "fontHeading": "Syne",
+    "fontBody": "Inter",
+    "borderRadius": "1rem",
+    "animationSpeed": "normal"
+  },
+  "navbar": {
+    "logo": "Mon Portfolio",
+    "links": [
+      {
+        "label": "Projets",
+        "href": "#projects"
+      },
+      {
+        "label": "À propos",
+        "href": "#about"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "ctaLabel": "Me contacter",
+    "ctaHref": "#contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "Jimmy Guillot",
+    "title": "Étudiant en BTS Communication",
+    "subtitle": "En alternance chez La Belle Finition à Bordeaux — passionné par la création visuelle et les technologies IA.",
+    "ctaPrimary": {
+      "label": "Voir mes projets",
+      "href": "#projects"
+    },
+    "ctaSecondary": {
+      "label": "Télécharger mon CV",
+      "href": "/cv.pdf"
+    },
+    "backgroundType": "gradient",
+    "backgroundValue": "from-white via-indigo-50 to-rose-50",
+    "avatar": "/uploads/1777816891025-avatar_jimmy.png",
+    "socialLinks": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/",
+        "icon": "linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/",
+        "icon": "instagram"
+      },
+      {
+        "platform": "Email",
+        "url": "mailto:guillotjimmy.gj@gmail.com",
+        "icon": "mail"
+      }
+    ],
+    "stats": [
+      {
+        "value": "2+",
+        "label": "Projets réalisés"
+      },
+      {
+        "value": "2 ans",
+        "label": "En alternance"
+      },
+      {
+        "value": "10+",
+        "label": "Compétences"
+      }
+    ]
+  },
+  "projects": {
+    "sectionTitle": "Mes Projets",
+    "sectionSubtitle": "Découvrez mes réalisations en communication, design et stratégie digitale.",
+    "layout": "grid",
+    "items": [
+      {
+        "id": "projet-lbf-refonte",
+        "slug": "refonte-charte-lbf",
+        "title": "Refonte charte graphique — La Belle Finition",
+        "shortDescription": "Mise à jour de l'identité visuelle de La Belle Finition : refonte typographique du logo pour un rendu plus moderne et premium.",
+        "coverImage": "/uploads/la belle finition/lbf landscape V2.png",
+        "tags": ["Design", "Branding", "Identité visuelle", "Alternance"],
+        "date": "2025-11",
+        "client": "La Belle Finition",
+        "featured": true,
+        "published": true,
+        "detail": {
+          "fullDescription": "Dans le cadre de mon alternance chez La Belle Finition, j'ai pris en charge la refonte de l'identité visuelle de l'entreprise. L'objectif principal était de moderniser le logo existant en changeant sa typographie pour un résultat plus épuré et premium, tout en conservant l'ADN de la marque.",
+          "images": [],
+          "context": "Mission réalisée dans le cadre de mon alternance en BTS Communication chez La Belle Finition à Bordeaux.",
+          "tools": ["Adobe Illustrator", "Canva"],
+          "results": "Un logo modernisé et une identité visuelle cohérente, déclinée en 3 versions prêtes à l'emploi sur tous les supports.",
+          "link": "",
+          "challenge": "Le logo existant de La Belle Finition manquait de modernité. La typographie utilisée ne reflétait pas suffisamment le positionnement haut de gamme et soigné que l'entreprise souhaitait véhiculer auprès de sa clientèle.",
+          "solution": "Refonte typographique du logo avec une nouvelle police plus épurée et contemporaine, déclinée en version colorée (bleu), monochrome noir et monochrome blanc. La nouvelle identité gagne en lisibilité et en impact visuel sur tous les supports digitaux et print.",
+          "role": "Designer graphique",
+          "duration": "2 semaines",
+          "stats": [
+            { "value": "3", "label": "Déclinaisons du logo" },
+            { "value": "100%", "label": "Illustrator" },
+            { "value": "1", "label": "Refonte typo réalisée en alternance" }
+          ],
+          "process": [
+            { "step": "01", "title": "Audit de l'existant", "description": "Analyse du logo en place, identification des points faibles typographiques et définition des objectifs de modernisation." },
+            { "step": "02", "title": "Recherche typographique", "description": "Sélection et test de plusieurs polices pour trouver celle qui traduit le mieux l'univers \"belle finition\" : précision, élégance, clarté." },
+            { "step": "03", "title": "Création & affinement", "description": "Design du nouveau logotype sur Illustrator, ajustements des espacements et validations auprès du client." },
+            { "step": "04", "title": "Déclinaisons & livraison", "description": "Production des 3 déclinaisons officielles (bleu, noir, blanc) en formats vectoriels prêts pour tous les usages." }
+          ],
+          "testimonial": null,
+          "color": "#1a4fd6"
+        }
+      },
+      {
+        "id": "projet-1777801513941",
+        "slug": "crm-btp",
+        "title": "Application CRM",
+        "shortDescription": "Service de gestions des appels, des demandes webs, fiches clients, planning et suivi de chantier",
+        "coverImage": "/uploads/1777802507466-Capture_d__cran_2026-05-03_120121.png",
+        "tags": [
+          "Application web"
+        ],
+        "date": "2026-04",
+        "client": "La Belle Finition & Pro'Jet Façade",
+        "featured": true,
+        "published": true,
+        "detail": {
+          "fullDescription": "",
+          "images": [
+            "/uploads/1777802833020-Capture_d__cran_2026-05-03_120259.png",
+            "/uploads/1777802850382-Capture_d__cran_2026-05-03_120316.png",
+            "/uploads/1777802874052-Capture_d__cran_2026-05-03_120333.png",
+            "/uploads/1777802888411-Capture_d__cran_2026-05-03_120345.png",
+            "/uploads/1777802906151-Capture_d__cran_2026-05-03_120355.png",
+            "/uploads/1777802926443-Capture_d__cran_2026-05-03_120427.png",
+            "/uploads/1777802941496-Capture_d__cran_2026-05-03_120409.png"
+          ],
+          "context": "Déménagement des locaux & mise en place d'un standard téléphonique",
+          "tools": [
+            "Claude Code",
+            "Github"
+          ],
+          "results": "Toutes les données relatives aux clients et traitements de leurs demandes centralisées sur une seule plateforme interne.",
+          "link": "",
+          "challenge": "Monsieur Pradat souhaitait déléguer la gestion des appels entrants pour se soulager des premières prises de contacts.",
+          "solution": "Création de l'application avec au début comme but de simplement créer un journal des appels reçus et émis mais avec le temps plusieurs fonctionnalités se sont rajoutées : fiche client complète, planning synchroniser avec le Google Agenda de monsieur Pradat, page de suivi de chantier personnalisée pour chaque client etc...",
+          "role": "Développeur Web",
+          "duration": "1 mois",
+          "stats": [
+            {
+              "value": "+100%",
+              "label": "Demandes webs et appels entrants traités en 48h"
+            },
+            {
+              "value": "1",
+              "label": "Fonctionnalité de suivi de chantier unique"
+            },
+            {
+              "value": "1 ",
+              "label": "Application développé 100% en interne "
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Cahier des charges",
+              "description": "Réalisation d'un cahier des charges en accord avec les attentes de monsieur Pradat"
+            },
+            {
+              "step": "02",
+              "title": "Développement en local",
+              "description": "Réaliser avec Claude local tout d'abord en local pour voir la faisabilité du projet"
+            },
+            {
+              "step": "03",
+              "title": "Déploiement sur notre hébergeur web",
+              "description": "Création d'un répertoire GitHub et synchronisation avec notre hébergeur web"
+            },
+            {
+              "step": "04",
+              "title": "Maintenance & mise à jour ",
+              "description": "Mise à jour et amélioration de l'application en continu pour améliorer l'UI et l'UX"
+            }
+          ],
+          "testimonial": null,
+          "color": "#6366f1"
+        }
+      },
+      {
+        "id": "projet-rammellzee",
+        "slug": "rammellzee",
+        "title": "Rammellzee",
+        "shortDescription": "Campagne visuelle pour l'exposition Alphabeta Sigma Face B au CAPC de Bordeaux — affiche, stories et carrousel Instagram.",
+        "coverImage": "/uploads/rammellzee/affiche mock.png",
+        "tags": [
+          "Design",
+          "Motion Design",
+          "Identité visuelle",
+          "Projet scolaire"
+        ],
+        "date": "2025-03",
+        "client": "CAPC Bordeaux",
+        "featured": false,
+        "published": true,
+        "detail": {
+          "fullDescription": "<p>Dans le cadre du BTS Communication, j'ai imaginé une campagne de communication pour l'exposition Rammellzee — Alphabeta Sigma Face B au CAPC de Bordeaux. L'univers gothique futuriste de l'artiste m'a guidé vers une direction artistique sombre et radicale : typographie agressive, palette noire et bleu électrique, compositions immersives déclinées sur print, réseaux sociaux et motion design.</p>",
+          "images": [],
+          "context": "Projet réalisé dans le cadre du BTS Communication — exercice de création d'une campagne de communication pour une exposition d'art contemporain.",
+          "tools": [
+            "Adobe Photoshop",
+            "Adobe After Effects"
+          ],
+          "results": "Campagne complète : affiche print, 3 stories animées et un post carrousel prêts à diffuser.",
+          "link": "",
+          "challenge": "Retranscrire l'univers ultra-spécifique de Rammellzee — gothique, futuriste, guerrier — dans une campagne visuelle cohérente qui attire un public jeune sur Instagram tout en restant fidèle à l'identité du CAPC.",
+          "solution": "Direction artistique dark & cinématographique : fond noir, typographies expressives et bleu électrique. Déclinaison en 3 formats complémentaires (affiche, stories animées, carrousel) pour une présence forte sur tous les supports.",
+          "role": "Directeur artistique & Motion designer",
+          "duration": "3 semaines",
+          "stats": [
+            {
+              "value": "3",
+              "label": "Stories animées"
+            },
+            {
+              "value": "4",
+              "label": "Slides carrousel"
+            },
+            {
+              "value": "1",
+              "label": "Vidéo 3D After Effects"
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Recherche & Immersion",
+              "description": "Analyse de l'univers de Rammellzee : Gothic Futurism, lettres comme armes, esthétique industrielle et chaotique."
+            },
+            {
+              "step": "02",
+              "title": "Direction artistique",
+              "description": "Définition de la palette (noir, bleu électrique), choix typographiques et construction du moodboard."
+            },
+            {
+              "step": "03",
+              "title": "Création print & social",
+              "description": "Réalisation de l'affiche et des visuels Instagram (stories + carrousel) sur Photoshop."
+            },
+            {
+              "step": "04",
+              "title": "Motion Design",
+              "description": "Animation 3D sur After Effects pour les stories et la vidéo de présentation de l'exposition."
+            }
+          ],
+          "testimonial": null,
+          "color": "#5a03fc"
+        }
+      },
+      {
+        "id": "projet-merci-fiona",
+        "slug": "merci-fiona",
+        "title": "Identité visuelle — merci fiona !",
+        "shortDescription": "Création complète de l'identité visuelle d'une cheffe à domicile bordelaise : naming, logo, visuels Instagram et supports print.",
+        "coverImage": "/uploads/merci fiona/mock up post 1.png",
+        "tags": [
+          "Design",
+          "Branding",
+          "Identité visuelle",
+          "Projet scolaire"
+        ],
+        "date": "2025-01",
+        "client": "Fiona Greard",
+        "featured": false,
+        "published": true,
+        "detail": {
+          "fullDescription": "Dans le cadre de mon BTS Communication, j'ai réalisé l'identité visuelle complète de Fiona Greard, cheffe à domicile bordelaise. J'ai proposé de renommer sa marque en \"merci fiona !\" — un clin d'œil à la dimension de service propre à la restauration, où l'on dit merci. Le projet comprend un logo original, des suggestions de visuels pour Instagram, des mock-ups print et un exemple de story.",
+          "images": [
+            "/uploads/merci fiona/logo.png",
+            "/uploads/merci fiona/mock up post 1.png",
+            "/uploads/merci fiona/mock up post 2.png",
+            "/uploads/merci fiona/mock up post 3.png",
+            "/uploads/merci fiona/exemple story.jpg",
+            "/uploads/merci fiona/mock up print.jpg"
+          ],
+          "context": "Projet réalisé dans le cadre du BTS Communication — exercice de création d'identité visuelle complète pour une cheffe à domicile.",
+          "tools": [
+            "Adobe Illustrator"
+          ],
+          "results": "Identité visuelle cohérente et originale, déclinée du logo aux supports digitaux et print.",
+          "link": "",
+          "challenge": "Donner une identité visuelle forte et mémorable à une cheffe à domicile qui n'en avait pas encore, en la distinguant de la concurrence bordelaise.",
+          "solution": "Proposition d'un repositionnement de marque avec le nom \"merci fiona !\" pour créer un lien émotionnel avec la clientèle. Déclinaison complète sur tous les supports : logo, posts Instagram, story et print.",
+          "role": "Designer graphique & Directeur artistique",
+          "duration": "3 semaines",
+          "stats": [
+            {
+              "value": "1",
+              "label": "Logo original créé"
+            },
+            {
+              "value": "3+",
+              "label": "Visuels Instagram"
+            },
+            {
+              "value": "100%",
+              "label": "Réalisé sur Illustrator"
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Brief & Recherche",
+              "description": "Analyse du positionnement de Fiona Greard, recherche d'inspiration et définition du territoire de marque."
+            },
+            {
+              "step": "02",
+              "title": "Naming & Concept",
+              "description": "Proposition du renommage en \"merci fiona !\" pour rappeler la dimension de service et créer une signature mémorable."
+            },
+            {
+              "step": "03",
+              "title": "Création du logo",
+              "description": "Design du logotype sur Adobe Illustrator : choix typographiques, palette de couleurs et mise en forme finale."
+            },
+            {
+              "step": "04",
+              "title": "Déclinaison & Mock-ups",
+              "description": "Application de l'identité sur les supports digitaux (posts, story Instagram) et print, avec mise en situation réaliste."
+            }
+          ],
+          "testimonial": null,
+          "color": "#c9a96e"
+        }
+      },
+      {
+        "id": "projet-1",
+        "slug": "charte-graphique-projet-facade",
+        "title": "Charte graphique — Pro'Jet Façade",
+        "shortDescription": "Création de la charte graphique complète pour l'entreprise de traitement de façade bordelaise.",
+        "coverImage": "/uploads/1777909784871-Capture_d__cran_2026-05-04_174911.png",
+        "tags": [
+          "Design",
+          "Branding",
+          "Identité visuelle"
+        ],
+        "date": "2025-09",
+        "client": "Pro'Jet Façade",
+        "featured": false,
+        "published": true,
+        "detail": {
+          "fullDescription": "Refonte complète de l'identité visuelle de Pro'Jet Façade, entreprise de traitement et ravalement de façade basée à Bordeaux. Le projet comprenait la création du logo, le choix de la palette de couleurs, la typographie et les templates de communication.",
+          "images": [],
+          "context": "Mission réalisée dans le cadre de mon alternance en BTS Communication.",
+          "tools": [
+            "Adobe Illustrator",
+            "Canva"
+          ],
+          "results": "Création d'une image de marque cohérente",
+          "link": "",
+          "color": "#d19374",
+          "challenge": "L'entreprise manquait d'une identité visuelle cohérente et professionnelle, ce qui nuisait à sa crédibilité auprès de nouveaux clients.",
+          "solution": "Développement d'une charte graphique complète : logo modulable, palette de couleurs soigneusement sélectionnée et typographies pour harmoniser toutes les communications.",
+          "role": "Designer graphique & Directeur artistique",
+          "duration": "3 mois",
+          "stats": [
+            {
+              "value": "+100%",
+              "label": "Reconnaissance de marque"
+            },
+            {
+              "value": "3",
+              "label": "Mois de projet"
+            },
+            {
+              "value": "5",
+              "label": "Supports créés"
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Audit & Recherche",
+              "description": "Analyse de l'existant, benchmarking des concurrents et définition du positionnement de la marque."
+            },
+            {
+              "step": "02",
+              "title": "Concept & Direction artistique",
+              "description": "Exploration de pistes graphiques, présentation de moodboards et validation du concept avec le patron."
+            },
+            {
+              "step": "03",
+              "title": "Création",
+              "description": "Design du logo, choix typographiques, construction de la palette."
+            }
+          ],
+          "testimonial": {
+            "quote": "Le résultat a dépassé nos attentes. Notre image est enfin à la hauteur de notre savoir-faire.",
+            "author": "Alexis Pradat",
+            "role": "Pro'Jet Façade"
+          }
+        }
+      }
+    ]
+  },
+  "about": {
+    "sectionTitle": "À propos de moi",
+    "bio": "Étudiant en BTS Communication en alternance chez La Belle Finition à Bordeaux. Passionné par le design graphique, la communication digitale et les technologies IA.",
+    "photo": "/uploads/1777817363898-avatar_jimmy_ordi.png",
+    "formation": "BTS Communication — Bordeaux",
+    "alternance": "La Belle Finition — Bordeaux (2025–2027)",
+    "stats": [
+      {
+        "value": "2+",
+        "label": "Projets livrés"
+      },
+      {
+        "value": "2 ans",
+        "label": "Alternance"
+      },
+      {
+        "value": "15+",
+        "label": "Outils maîtrisés"
+      },
+      {
+        "value": "100%",
+        "label": "Passion"
+      }
+    ],
+    "skills": [
+      {
+        "category": "Design",
+        "items": [
+          "Adobe Photoshop",
+          "Illustrator",
+          "Canva",
+          "Premiere Pro",
+          "CapCut"
+        ]
+      },
+      {
+        "category": "Communication",
+        "items": [
+          "Stratégie digitale",
+          "Community management",
+          "Rédaction web"
+        ]
+      },
+      {
+        "category": "Outils",
+        "items": [
+          "Suite Office",
+          "WordPress"
+        ]
+      }
+    ],
+    "skillLevels": {
+      "Adobe Photoshop": 60,
+      "Illustrator": 60,
+      "Canva": 95,
+      "Premiere Pro": 60,
+      "CapCut": 80,
+      "Stratégie digitale": 80,
+      "Community management": 85,
+      "Rédaction web": 75,
+      "Suite Office": 90,
+      "WordPress": 90
+    },
+    "timeline": [
+      {
+        "year": "2025",
+        "title": "La Belle Finition",
+        "subtitle": "Alternance — Communication & Design",
+        "type": "work"
+      },
+      {
+        "year": "2020",
+        "title": "Lycée Gustave Eiffel",
+        "subtitle": "Bac STI2D",
+        "type": "education"
+      }
+    ],
+    "values": [
+      {
+        "icon": "zap",
+        "title": "Créativité",
+        "description": "Chaque projet est une opportunité de créer quelque chose d'unique."
+      },
+      {
+        "icon": "target",
+        "title": "Rigueur",
+        "description": "Attention aux détails et respect des délais."
+      },
+      {
+        "icon": "users",
+        "title": "Collaboration",
+        "description": "Le travail d'équipe est au cœur de ma démarche."
+      }
+    ],
+    "cvFile": "/cv.pdf"
+  },
+  "contact": {
+    "sectionTitle": "Me contacter",
+    "subtitle": "Un projet ? Une question ? N'hésitez pas à m'écrire.",
+    "email": "guillotjimmy.gj@gmail.com",
+    "phone": "+33 7 82 12 38 90",
+    "location": "Bordeaux, France",
+    "formEnabled": true,
+    "formFields": [
+      "Nom",
+      "Email",
+      "Sujet",
+      "Message"
+    ],
+    "socialLinks": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/",
+        "icon": "linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/",
+        "icon": "instagram"
+      }
+    ],
+    "availabilityTitle": "Disponible pour",
+    "availabilitySubtitle": "Projets freelance",
+    "availabilityStatus": "Actuellement en alternance",
+    "availabilityVisible": true
+  },
+  "footer": {
+    "text": "© 2026 Jimmy Guillot — Portfolio BTS Communication",
+    "links": []
+  },
+  "sectionOrder": [
+    "hero",
+    "projects",
+    "about",
+    "contact"
+  ],
+  "maintenanceMode": false,
+  "analytics": {},
+  "translations": {
+    "en": {
+      "hero": {
+        "greeting": "Hi, I'm",
+        "title": "BTS Communication Student",
+        "subtitle": "Work-study student at La Belle Finition in Bordeaux — passionate about visual creation and AI technologies.",
+        "ctaPrimary": {
+          "label": "View my projects",
+          "href": "#projects"
+        },
+        "ctaSecondary": {
+          "label": "Download my CV",
+          "href": "/cv.pdf"
+        }
+      },
+      "projects": {
+        "sectionTitle": "My Projects",
+        "sectionSubtitle": "Discover my work in communication, design and digital strategy."
+      },
+      "about": {
+        "sectionTitle": "About me",
+        "bio": "Communication student on a work-study contract at La Belle Finition in Bordeaux. Passionate about graphic design, digital communication and content creation.",
+        "formation": "BTS Communication — Bordeaux",
+        "alternance": "La Belle Finition — Bordeaux (2025–2027)"
+      },
+      "contact": {
+        "sectionTitle": "Get in touch",
+        "subtitle": "A project? A question? Feel free to write to me."
+      },
+      "navbar": {
+        "ctaLabel": "Contact me"
+      }
+    }
+  }
+}

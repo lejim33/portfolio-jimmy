@@ -1,0 +1,408 @@
+{
+  "meta": {
+    "siteTitle": "Mon Portfolio",
+    "siteDescription": "Portfolio de Jimmy Guillot — BTS Communication",
+    "favicon": "/favicon.ico",
+    "ogImage": "/og-image.jpg",
+    "lang": "fr"
+  },
+  "theme": {
+    "primaryColor": "#6366f1",
+    "accentColor": "#666666",
+    "backgroundColor": "#ffffff",
+    "textColor": "#0f172a",
+    "fontHeading": "Syne",
+    "fontBody": "Inter",
+    "borderRadius": "1rem",
+    "animationSpeed": "normal"
+  },
+  "navbar": {
+    "logo": "Mon Portfolio",
+    "links": [
+      {
+        "label": "Projets",
+        "href": "#projects"
+      },
+      {
+        "label": "À propos",
+        "href": "#about"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "ctaLabel": "Me contacter",
+    "ctaHref": "#contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "Jimmy Guillot",
+    "title": "Étudiant en BTS Communication",
+    "subtitle": "En alternance chez La Belle Finition à Bordeaux — passionné par la création visuelle et les technologies IA.",
+    "ctaPrimary": {
+      "label": "Voir mes projets",
+      "href": "#projects"
+    },
+    "ctaSecondary": {
+      "label": "Télécharger mon CV",
+      "href": "/cv.pdf"
+    },
+    "backgroundType": "gradient",
+    "backgroundValue": "from-white via-indigo-50 to-rose-50",
+    "avatar": "/uploads/1777816891025-avatar_jimmy.png",
+    "socialLinks": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/",
+        "icon": "linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/",
+        "icon": "instagram"
+      },
+      {
+        "platform": "Email",
+        "url": "mailto:guillotjimmy.gj@gmail.com",
+        "icon": "mail"
+      }
+    ],
+    "stats": [
+      {
+        "value": "2+",
+        "label": "Projets réalisés"
+      },
+      {
+        "value": "2 ans",
+        "label": "En alternance"
+      },
+      {
+        "value": "10+",
+        "label": "Compétences"
+      }
+    ]
+  },
+  "projects": {
+    "sectionTitle": "Mes Projets",
+    "sectionSubtitle": "Découvrez mes réalisations en communication, design et stratégie digitale.",
+    "layout": "grid",
+    "items": [
+      {
+        "id": "projet-1777801513941",
+        "slug": "crm-btp",
+        "title": "Application CRM",
+        "shortDescription": "Service de gestions des appels, des demandes webs, fiches clients, planning et suivi de chantier",
+        "coverImage": "/uploads/1777802507466-Capture_d__cran_2026-05-03_120121.png",
+        "tags": [
+          "Application web"
+        ],
+        "date": "2026-04",
+        "client": "La Belle Finition & Pro'Jet Façade",
+        "featured": false,
+        "published": true,
+        "detail": {
+          "fullDescription": "",
+          "images": [
+            "/uploads/1777802833020-Capture_d__cran_2026-05-03_120259.png",
+            "/uploads/1777802850382-Capture_d__cran_2026-05-03_120316.png",
+            "/uploads/1777802874052-Capture_d__cran_2026-05-03_120333.png",
+            "/uploads/1777802888411-Capture_d__cran_2026-05-03_120345.png",
+            "/uploads/1777802906151-Capture_d__cran_2026-05-03_120355.png",
+            "/uploads/1777802926443-Capture_d__cran_2026-05-03_120427.png",
+            "/uploads/1777802941496-Capture_d__cran_2026-05-03_120409.png"
+          ],
+          "context": "Déménagement des locaux & mise en place d'un standard téléphonique",
+          "tools": [
+            "Claude Code",
+            "Github"
+          ],
+          "results": "Toutes les données relatives aux clients et traitements de leurs demandes centralisées sur une seule plateforme interne.",
+          "link": "",
+          "challenge": "Monsieur Pradat souhaitait déléguer la gestion des appels entrants pour se soulager des premières prises de contacts.",
+          "solution": "Création de l'application avec au début comme but de simplement créer un journal des appels reçus et émis mais avec le temps plusieurs fonctionnalités se sont rajoutées : fiche client complète, planning synchroniser avec le Google Agenda de monsieur Pradat, page de suivi de chantier personnalisée pour chaque client etc...",
+          "role": "Développeur Web",
+          "duration": "1 mois",
+          "stats": [
+            {
+              "value": "+100%",
+              "label": "Demandes webs et appels entrants traités en 48h"
+            },
+            {
+              "value": "1",
+              "label": "Fonctionnalité de suivi de chantier unique"
+            },
+            {
+              "value": "1 ",
+              "label": "Application développé 100% en interne "
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Cahier des charges",
+              "description": "Réalisation d'un cahier des charges en accord avec les attentes de monsieur Pradat"
+            },
+            {
+              "step": "02",
+              "title": "Développement en local",
+              "description": "Réaliser avec Claude local tout d'abord en local pour voir la faisabilité du projet"
+            },
+            {
+              "step": "03",
+              "title": "Déploiement sur notre hébergeur web",
+              "description": "Création d'un répertoire GitHub et synchronisation avec notre hébergeur web"
+            },
+            {
+              "step": "04",
+              "title": "Maintenance & mise à jour ",
+              "description": "Mise à jour et amélioration de l'application en continu pour améliorer l'UI et l'UX"
+            }
+          ],
+          "testimonial": null,
+          "color": "#6366f1"
+        }
+      },
+      {
+        "id": "projet-1",
+        "slug": "charte-graphique-projet-facade",
+        "title": "Charte graphique — Pro'Jet Façade",
+        "shortDescription": "Création de la charte graphique complète pour l'entreprise de traitement de façade bordelaise.",
+        "coverImage": "",
+        "tags": [
+          "Design",
+          "Branding",
+          "Identité visuelle"
+        ],
+        "date": "2025-09",
+        "client": "Pro'Jet Façade",
+        "featured": true,
+        "published": true,
+        "detail": {
+          "fullDescription": "Refonte complète de l'identité visuelle de Pro'Jet Façade, entreprise de traitement et ravalement de façade basée à Bordeaux. Le projet comprenait la création du logo, le choix de la palette de couleurs, la typographie et les templates de communication.",
+          "images": [],
+          "context": "Mission réalisée dans le cadre de mon alternance en BTS Communication.",
+          "tools": [
+            "Adobe Illustrator",
+            "Canva"
+          ],
+          "results": "Création d'une image de marque cohérente",
+          "link": "",
+          "color": "#d19374",
+          "challenge": "L'entreprise manquait d'une identité visuelle cohérente et professionnelle, ce qui nuisait à sa crédibilité auprès de nouveaux clients.",
+          "solution": "Développement d'une charte graphique complète : logo modulable, palette de couleurs soigneusement sélectionnée et typographies pour harmoniser toutes les communications.",
+          "role": "Designer graphique & Directeur artistique",
+          "duration": "3 mois",
+          "stats": [
+            {
+              "value": "+100%",
+              "label": "Reconnaissance de marque"
+            },
+            {
+              "value": "3",
+              "label": "Mois de projet"
+            },
+            {
+              "value": "5",
+              "label": "Supports créés"
+            }
+          ],
+          "process": [
+            {
+              "step": "01",
+              "title": "Audit & Recherche",
+              "description": "Analyse de l'existant, benchmarking des concurrents et définition du positionnement de la marque."
+            },
+            {
+              "step": "02",
+              "title": "Concept & Direction artistique",
+              "description": "Exploration de pistes graphiques, présentation de moodboards et validation du concept avec le patron."
+            },
+            {
+              "step": "03",
+              "title": "Création",
+              "description": "Design du logo, choix typographiques, construction de la palette."
+            }
+          ],
+          "testimonial": {
+            "quote": "Le résultat a dépassé nos attentes. Notre image est enfin à la hauteur de notre savoir-faire.",
+            "author": "Alexis Pradat",
+            "role": "Pro'Jet Façade"
+          }
+        }
+      }
+    ]
+  },
+  "about": {
+    "sectionTitle": "À propos de moi",
+    "bio": "Étudiant en BTS Communication en alternance chez La Belle Finition à Bordeaux. Passionné par le design graphique, la communication digitale et les technologies IA.",
+    "photo": "/uploads/1777817363898-avatar_jimmy_ordi.png",
+    "formation": "BTS Communication — Bordeaux",
+    "alternance": "La Belle Finition — Bordeaux (2025–2027)",
+    "stats": [
+      {
+        "value": "2+",
+        "label": "Projets livrés"
+      },
+      {
+        "value": "2 ans",
+        "label": "Alternance"
+      },
+      {
+        "value": "15+",
+        "label": "Outils maîtrisés"
+      },
+      {
+        "value": "100%",
+        "label": "Passion"
+      }
+    ],
+    "skills": [
+      {
+        "category": "Design",
+        "items": [
+          "Adobe Photoshop",
+          "Illustrator",
+          "Canva",
+          "Premiere Pro",
+          "CapCut"
+        ]
+      },
+      {
+        "category": "Communication",
+        "items": [
+          "Stratégie digitale",
+          "Community management",
+          "Rédaction web"
+        ]
+      },
+      {
+        "category": "Outils",
+        "items": [
+          "Suite Office",
+          "WordPress"
+        ]
+      }
+    ],
+    "skillLevels": {
+      "Adobe Photoshop": 60,
+      "Illustrator": 60,
+      "Canva": 95,
+      "Premiere Pro": 60,
+      "CapCut": 80,
+      "Stratégie digitale": 80,
+      "Community management": 85,
+      "Rédaction web": 75,
+      "Suite Office": 90,
+      "WordPress": 90
+    },
+    "timeline": [
+      {
+        "year": "2025",
+        "title": "La Belle Finition",
+        "subtitle": "Alternance — Communication & Design",
+        "type": "work"
+      },
+      {
+        "year": "2020",
+        "title": "Lycée Gustave Eiffel",
+        "subtitle": "Bac STI2D",
+        "type": "education"
+      }
+    ],
+    "values": [
+      {
+        "icon": "zap",
+        "title": "Créativité",
+        "description": "Chaque projet est une opportunité de créer quelque chose d'unique."
+      },
+      {
+        "icon": "target",
+        "title": "Rigueur",
+        "description": "Attention aux détails et respect des délais."
+      },
+      {
+        "icon": "users",
+        "title": "Collaboration",
+        "description": "Le travail d'équipe est au cœur de ma démarche."
+      }
+    ],
+    "cvFile": "/cv.pdf"
+  },
+  "contact": {
+    "sectionTitle": "Me contacter",
+    "subtitle": "Un projet ? Une question ? N'hésitez pas à m'écrire.",
+    "email": "guillotjimmy.gj@gmail.com",
+    "phone": "+33 7 82 12 38 90",
+    "location": "Bordeaux, France",
+    "formEnabled": true,
+    "formFields": [
+      "Nom",
+      "Email",
+      "Sujet",
+      "Message"
+    ],
+    "socialLinks": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/",
+        "icon": "linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/",
+        "icon": "instagram"
+      }
+    ],
+    "availabilityTitle": "Disponible pour",
+    "availabilitySubtitle": "Projets freelance",
+    "availabilityStatus": "Actuellement en alternance",
+    "availabilityVisible": true
+  },
+  "footer": {
+    "text": "© 2026 Jimmy Guillot — Portfolio BTS Communication",
+    "links": []
+  },
+  "sectionOrder": [
+    "hero",
+    "projects",
+    "about",
+    "contact"
+  ],
+  "maintenanceMode": false,
+  "analytics": {},
+  "translations": {
+    "en": {
+      "hero": {
+        "greeting": "Hi, I'm",
+        "title": "BTS Communication Student",
+        "subtitle": "Work-study student at La Belle Finition in Bordeaux — passionate about visual creation and AI technologies.",
+        "ctaPrimary": {
+          "label": "View my projects",
+          "href": "#projects"
+        },
+        "ctaSecondary": {
+          "label": "Download my CV",
+          "href": "/cv.pdf"
+        }
+      },
+      "projects": {
+        "sectionTitle": "My Projects",
+        "sectionSubtitle": "Discover my work in communication, design and digital strategy."
+      },
+      "about": {
+        "sectionTitle": "About me",
+        "bio": "Communication student on a work-study contract at La Belle Finition in Bordeaux. Passionate about graphic design, digital communication and content creation.",
+        "formation": "BTS Communication — Bordeaux",
+        "alternance": "La Belle Finition — Bordeaux (2025–2027)"
+      },
+      "contact": {
+        "sectionTitle": "Get in touch",
+        "subtitle": "A project? A question? Feel free to write to me."
+      },
+      "navbar": {
+        "ctaLabel": "Contact me"
+      }
+    }
+  }
+}

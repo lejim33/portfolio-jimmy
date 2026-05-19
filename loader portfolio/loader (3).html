@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jimmy Guillot — Loader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #eeeef8;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    #canvas-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    #stage {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 5;
+    }
+
+    #orbit-svg {
+      position: absolute;
+      width: 100vmin; height: 100vmin;
+      overflow: visible;
+    }
+
+    /* ── icônes flottantes ── */
+    .icon-node {
+      position: fixed;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 18px;
+      width: 48px; height: 48px;
+      font-size: 22px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      will-change: transform, opacity;
+      box-shadow: 0 4px 20px rgba(68,68,255,0.15);
+      transition: none;
+    }
+
+    /* ── NOM ── */
+    #name-section {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      pointer-events: none; z-index: 20;
+    }
+
+    #badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid #a0a0ee;
+      border-radius: 999px; padding: 6px 16px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; color: #4444ff;
+      text-transform: uppercase;
+      opacity: 0; margin-bottom: 28px;
+    }
+    .bdot { width:6px; height:6px; border-radius:50%; background:#4444ff; animation: blink 1.4s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    #name-block { text-align: center; line-height: 1; }
+    .name-line { display: block; }
+    .char {
+      display: inline-block;
+      font-size: clamp(62px, 11.5vw, 132px);
+      font-weight: 900; color: #0c0c1e;
+      letter-spacing: -0.03em;
+      opacity: 0; will-change: transform, opacity, filter;
+    }
+
+    #underline-wrap {
+      width: 100%; height: 3px; margin-top: 14px;
+      position: relative; overflow: hidden; border-radius: 2px;
+    }
+    #underline-fill {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, #4444ff, #6666ff);
+      transform-origin: left; transform: scaleX(0); opacity: 0;
+      border-radius: 2px;
+    }
+
+    #subtitle {
+      font-size: clamp(11px, 1.4vw, 14px);
+      font-weight: 700; color: #4444ff;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      opacity: 0; margin-top: 20px;
+    }
+
+    #exit-overlay {
+      position: fixed; inset: 0; background: #eeeef8;
+      z-index: 50; opacity: 0; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas-bg"></canvas>
+<div id="exit-overlay"></div>
+
+<div id="stage">
+  <svg id="orbit-svg" viewBox="-250 -250 500 500">
+    <defs>
+      <filter id="linkBlur" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1"/>
+      </filter>
+    </defs>
+    <g id="links-g"></g>
+  </svg>
+</div>
+
+<div id="name-section">
+  <div id="badge"><span class="bdot"></span>Bonjour, je suis</div>
+  <div id="name-block">
+    <span class="name-line" id="line1"></span>
+    <span style="display:block;height:.05em"></span>
+    <span class="name-line" id="line2"></span>
+    <div id="underline-wrap"><div id="underline-fill"></div></div>
+  </div>
+  <div id="subtitle">Étudiant en BTS Communication</div>
+</div>
+
+<script>
+/* ══ UTILS ══ */
+function hexToRgb(hex){
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  return {r,g,b};
+}
+
+/* ══ EASING ══ */
+const E = {
+  outExpo:   t => t===1?1:1-Math.pow(2,-10*t),
+  outBack:   t => { const c=1.70158,c3=c+1; return 1+c3*Math.pow(t-1,3)+c*Math.pow(t-1,2); },
+  outQuart:  t => 1-Math.pow(1-t,4),
+  inOutQ:    t => t<.5?8*t*t*t*t:1-Math.pow(-2*t+2,4)/2,
+  outElastic:t => { const c=2*Math.PI/4.5; return t===0?0:t===1?1:Math.pow(2,-10*t)*Math.sin((t*10-0.75)*c)+1; },
+  inQuart:   t => t*t*t*t,
+};
+
+function go({from=0,to=1,dur,delay=0,fn=E.outExpo,tick,done}){
+  const t0=performance.now()+delay;
+  function frame(now){
+    if(now<t0){requestAnimationFrame(frame);return;}
+    const raw=Math.min((now-t0)/dur,1);
+    tick(from+(to-from)*fn(raw),raw);
+    if(raw<1) requestAnimationFrame(frame);
+    else if(done) done();
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ══ PARTICULES FOND ══ */
+(function(){
+  const cv=document.getElementById('canvas-bg');
+  const ctx=cv.getContext('2d');
+  let W,H,pts;
+  function resize(){ W=cv.width=window.innerWidth; H=cv.height=window.innerHeight; }
+  function mk(){ pts=Array.from({length:55},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.8+.4,
+    vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,
+    a:Math.random()*.4+.1,
+    p:Math.random()*Math.PI*2,ps:.006+Math.random()*.01
+  }));}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of pts){
+      p.p+=p.ps; const al=p.a*(.6+.4*Math.sin(p.p));
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(100,100,255,${al})`;ctx.fill();
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5;
+      if(p.y<-5)p.y=H+5;if(p.y>H+5)p.y=-5;
+    }
+    requestAnimationFrame(draw);
+  }
+  resize();mk();draw();
+  window.addEventListener('resize',()=>{resize();mk();});
+})();
+
+/* ══ ICÔNES COMMUNICATION ══ */
+// Chaque icône : label, SVG inline, couleur de fond, couleur icône
+const ICONS = [
+  // Instagram
+  { label:'instagram', bg:'#E1306C', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>` },
+  // LinkedIn
+  { label:'linkedin', bg:'#0A66C2', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>` },
+  // TikTok
+  { label:'tiktok', bg:'#010101', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.86a8.17 8.17 0 004.78 1.52V6.93a4.85 4.85 0 01-1.01-.24z"/></svg>` },
+  // YouTube
+  { label:'youtube', bg:'#FF0000', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon fill="#FF0000" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/><polygon fill="white" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>` },
+  // Facebook
+  { label:'facebook', bg:'#1877F2', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>` },
+  // Mail
+  { label:'mail', bg:'#4444ff', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>` },
+  // DM / message
+  { label:'dm', bg:'#8b5cf6', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>` },
+  // Like / cœur
+  { label:'like', bg:'#f43f5e', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>` },
+  // Commentaire
+  { label:'comment', bg:'#10b981', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>` },
+  // Share / partage
+  { label:'share', bg:'#f97316', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>` },
+  // Notification / cloche
+  { label:'notif', bg:'#eab308', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>` },
+  // Hashtag
+  { label:'hashtag', bg:'#06b6d4', fg:'#fff',
+    svg:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="22" height="22"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>` },
+];
+
+const N_ICONS = ICONS.length; // 12
+
+/* ══ CRÉATION DES NŒUDS DOM ══ */
+const nodes = ICONS.map((ic, i) => {
+  const el = document.createElement('div');
+  el.className = 'icon-node';
+  el.style.background = ic.bg;
+  el.style.color = ic.fg;
+  el.innerHTML = ic.svg;
+  document.body.appendChild(el);
+  const fixedAngle = (i / N_ICONS) * Math.PI * 2 - Math.PI / 2;
+  const fixedR = 115 + (i % 3) * 35;
+  return { el, ic, i,
+    fixedAngle,
+    fixedR,
+    // flottement principal
+    floatAmpX: 6 + Math.random() * 8,
+    floatAmpY: 8 + Math.random() * 10,
+    floatFreqX: 0.00035 + Math.random() * 0.00025,
+    floatFreqY: 0.00028 + Math.random() * 0.0002,
+    floatPhaseX: Math.random() * Math.PI * 2,
+    floatPhaseY: Math.random() * Math.PI * 2,
+    // dérive angulaire lente sur l'anneau
+    driftSpeed: (Math.random() - 0.5) * 0.00009,
+    // oscillation du rayon (respiration)
+    radiusAmp: 10 + Math.random() * 14,
+    radiusFreq: 0.00025 + Math.random() * 0.00018,
+    radiusPhase: Math.random() * Math.PI * 2,
+    // légère rotation individuelle
+    rotAmp: 3 + Math.random() * 3,
+    rotFreq: 0.00018 + Math.random() * 0.00012,
+    rotPhase: Math.random() * Math.PI * 2,
+    masterAlpha: 0,
+    convergeT: 0,
+    explodeT: 0,
+  };
+});
+
+/* ══ LIENS SVG ══ */
+const linksG = document.getElementById('links-g');
+// On relie les nœuds proches par indice (anneau + quelques transversales)
+const LINK_PAIRS = [];
+for(let i=0;i<N_ICONS;i++){
+  LINK_PAIRS.push([i,(i+1)%N_ICONS]);
+  if(i%3===0) LINK_PAIRS.push([i,(i+4)%N_ICONS]);
+}
+const linkEls = LINK_PAIRS.map(()=>{
+  const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+  l.setAttribute('stroke','rgba(120,120,255,0.25)');
+  l.setAttribute('stroke-width','0.8');
+  l.setAttribute('filter','url(#linkBlur)');
+  l.setAttribute('opacity','0');
+  linksG.appendChild(l);
+  return l;
+});
+
+/* ══ POSITIONS ACTUELLES (pour les liens) ══ */
+const currentPos = new Array(N_ICONS).fill(null).map(()=>({x:0,y:0}));
+
+/* ══ CHARS ══ */
+function injectChars(id,word){
+  const el=document.getElementById(id);
+  word.split('').forEach(ch=>{
+    const s=document.createElement('span');
+    s.className='char'; s.textContent=ch;
+    el.appendChild(s);
+  });
+}
+injectChars('line1','Jimmy');
+injectChars('line2','Guillot');
+const allChars=[...document.querySelectorAll('.char')];
+const jimmy=allChars.slice(0,5), guillot=allChars.slice(5);
+
+/* ══ REFS ══ */
+const badge=document.getElementById('badge');
+const subtitle=document.getElementById('subtitle');
+const underlineFill=document.getElementById('underline-fill');
+const exitOverlay=document.getElementById('exit-overlay');
+
+/* ══ BOUCLE ANIMATION ══ */
+let globalTime=0, lastNow=null, loopAlive=true;
+let masterAlpha=0, convergeT=0, disperseT=0;
+
+function mainLoop(now){
+  if(!lastNow) lastNow=now;
+  const dt=Math.min(now-lastNow,50);
+  lastNow=now; globalTime+=dt;
+
+  const W=window.innerWidth, H=window.innerHeight;
+  const CX=W/2, CY=H/2;
+
+  nodes.forEach((nd,i)=>{
+    const ease = 1 - convergeT;
+
+    // dérive angulaire + respiration du rayon (s'estompent à la convergence)
+    const currentAngle = nd.fixedAngle + globalTime * nd.driftSpeed * ease;
+    const currentR = nd.fixedR + Math.sin(globalTime * nd.radiusFreq + nd.radiusPhase) * nd.radiusAmp * ease;
+
+    const baseX = CX + Math.cos(currentAngle) * currentR;
+    const baseY = CY + Math.sin(currentAngle) * currentR;
+
+    // flottement simple (s'estompe à la convergence)
+    const floatX = Math.sin(globalTime * nd.floatFreqX + nd.floatPhaseX) * nd.floatAmpX * ease;
+    const floatY = Math.sin(globalTime * nd.floatFreqY + nd.floatPhaseY) * nd.floatAmpY * ease;
+
+    const ox = baseX + floatX;
+    const oy = baseY + floatY;
+
+    // convergence vers centre
+    const tx = CX - 24;
+    const ty = CY - 24;
+    const px = ox + (tx - ox) * convergeT;
+    const py = oy + (ty - oy) * convergeT;
+
+    // dispersion finale
+    const dAngle = nd.fixedAngle;
+    const dDist = 280 + i * 20;
+    const fpx = px + Math.cos(dAngle) * dDist * disperseT;
+    const fpy = py + Math.sin(dAngle) * dDist * disperseT;
+
+    const alpha = masterAlpha * (1 - disperseT * 1.2);
+
+    nd.el.style.left = fpx + 'px';
+    nd.el.style.top  = fpy + 'px';
+    nd.el.style.opacity = Math.max(0, alpha);
+
+    // scale + rotation individuelle (rotation s'estompe à la convergence)
+    const sc  = 1 + Math.sin(globalTime * 0.0006 + i * 0.9) * 0.04;
+    const rot = Math.sin(globalTime * nd.rotFreq + nd.rotPhase) * nd.rotAmp * ease;
+    nd.el.style.transform = `scale(${sc}) rotate(${rot}deg)`;
+
+    // coords SVG pour liens
+    const svgSize = Math.min(W, H);
+    const svgX = (fpx + 24 - CX) / svgSize * 500;
+    const svgY = (fpy + 24 - CY) / svgSize * 500;
+    currentPos[i] = { x: svgX, y: svgY };
+  });
+
+  // Mettre à jour les liens
+  const linkAlpha = masterAlpha * (1-convergeT) * (1-disperseT);
+  LINK_PAIRS.forEach(([a,b],i)=>{
+    const pa=currentPos[a], pb=currentPos[b];
+    if(!pa||!pb) return;
+    linkEls[i].setAttribute('x1',pa.x); linkEls[i].setAttribute('y1',pa.y);
+    linkEls[i].setAttribute('x2',pb.x); linkEls[i].setAttribute('y2',pb.y);
+    linkEls[i].setAttribute('opacity', linkAlpha*0.9);
+  });
+
+  if(loopAlive) requestAnimationFrame(mainLoop);
+  else {
+    nodes.forEach(nd=>{ nd.el.style.opacity='0'; });
+    linkEls.forEach(l=>l.setAttribute('opacity','0'));
+  }
+}
+
+/* ══ TIMELINE ══ */
+function runLoader(){
+  loopAlive=true; globalTime=0; lastNow=null;
+  masterAlpha=0; convergeT=0; disperseT=0;
+
+  allChars.forEach(c=>{
+    c.style.opacity='0';
+    c.style.transform='translateY(18px) scale(0.88)';
+    c.style.filter='blur(8px)';
+    c.style.color='';
+  });
+  badge.style.opacity='0'; badge.style.transform='translateY(8px)';
+  subtitle.style.opacity='0'; subtitle.style.transform='translateY(8px)';
+  underlineFill.style.opacity='0'; underlineFill.style.transform='scaleX(0)';
+  exitOverlay.style.opacity='0';
+
+  requestAnimationFrame(mainLoop);
+
+  // Couleurs des icônes assignées à chaque lettre
+  const iconColors = ICONS.map(ic => ic.bg);
+  // Jimmy (5 lettres) → 5 premières couleurs
+  // Guillot (7 lettres) → 7 couleurs suivantes
+  const charColors = allChars.map((_,i) => iconColors[i % iconColors.length]);
+
+  // ── Phase 1 : fade-in icônes (0→1600ms) ──
+  go({ dur:1600, delay:0, fn:E.outQuart,
+    tick:(v)=>{ masterAlpha=v; }
+  });
+
+  // ── Orbite libre (1600→1650ms) ── (boucle gère)
+
+  // ── Convergence (1650→2850ms) ──
+  setTimeout(()=>{
+    go({ from:0,to:1, dur:1200, fn:E.inOutQ,
+      tick:(v)=>{ convergeT=v; }
+    });
+  }, 1650);
+
+  // ── Flash + dispersion (2850ms) ──
+  setTimeout(()=>{
+    nodes.forEach((nd)=>{
+      nd.el.style.transition='transform 0.18s ease-out';
+      nd.el.style.transform='scale(1.5)';
+      setTimeout(()=>{ nd.el.style.transition='none'; nd.el.style.transform='scale(1)'; },180);
+    });
+    go({ from:0,to:1, dur:800, fn:E.outQuart,
+      tick:(v)=>{ disperseT=v; },
+      done(){ loopAlive=false; }
+    });
+  }, 2850);
+
+  // ── Badge (3150ms) ──
+  go({ from:0,to:1, dur:600, delay:3150, fn:E.outExpo,
+    tick:(v)=>{
+      badge.style.opacity=v;
+      badge.style.transform=`translateY(${(1-v)*10}px)`;
+    }
+  });
+
+  // ── Jimmy — lettres multicolores (3400ms) ──
+  jimmy.forEach((ch,i)=>{
+    ch.style.color = charColors[i];
+    go({ from:0,to:1, dur:700, delay:3400+i*110, fn:E.outBack,
+      tick:(v)=>{
+        ch.style.opacity=v;
+        ch.style.transform=`translateY(${(1-v)*18}px) scale(${.88+v*.12})`;
+        ch.style.filter=`blur(${(1-v)*8}px)`;
+      }
+    });
+  });
+
+  // ── Guillot — lettres multicolores (4010ms) ──
+  guillot.forEach((ch,i)=>{
+    ch.style.color = charColors[5+i];
+    go({ from:0,to:1, dur:720, delay:4010+i*100, fn:E.outBack,
+      tick:(v)=>{
+        ch.style.opacity=v;
+        ch.style.transform=`translateY(${(1-v)*18}px) scale(${.88+v*.12})`;
+        ch.style.filter=`blur(${(1-v)*8}px)`;
+      }
+    });
+  });
+
+  // ── Flashs de couleur aléatoires (4550ms → 5150ms) ──
+  allChars.forEach((ch, i) => {
+    const numFlashes = Math.random() < 0.5 ? 1 : 2;
+    for(let f = 0; f < numFlashes; f++){
+      const flashDelay = 4550 + Math.random() * 600 + f * 300;
+      setTimeout(()=>{
+        const newColor = iconColors[Math.floor(Math.random() * iconColors.length)];
+        ch.style.transition = 'color 0.3s ease';
+        ch.style.color = newColor;
+        setTimeout(()=>{ ch.style.transition = 'none'; }, 320);
+      }, flashDelay);
+    }
+  });
+
+  // ── Transition couleur → noir (5350ms) ──
+  setTimeout(()=>{
+    allChars.forEach((ch,i)=>{
+      const computed = ch.style.color;
+      let sc;
+      if(computed.startsWith('rgb')){
+        const m = computed.match(/\d+/g);
+        sc = {r:+m[0], g:+m[1], b:+m[2]};
+      } else {
+        sc = hexToRgb(charColors[i]);
+      }
+      const ec = {r:12, g:12, b:30};
+      go({ from:0, to:1, dur:1000, delay:i*45, fn:E.inOutQ,
+        tick:(v)=>{
+          const r=Math.round(sc.r+(ec.r-sc.r)*v);
+          const g=Math.round(sc.g+(ec.g-sc.g)*v);
+          const b=Math.round(sc.b+(ec.b-sc.b)*v);
+          ch.style.color = `rgb(${r},${g},${b})`;
+        }
+      });
+    });
+  }, 5350);
+
+  // ── Underline (6450ms) ──
+  go({ from:0,to:1, dur:600, delay:6450, fn:E.outExpo,
+    tick:(v)=>{
+      underlineFill.style.opacity=v;
+      underlineFill.style.transform=`scaleX(${v})`;
+    }
+  });
+
+  // ── Subtitle (6700ms) ──
+  go({ from:0,to:1, dur:550, delay:6700, fn:E.outExpo,
+    tick:(v)=>{
+      subtitle.style.opacity=v;
+      subtitle.style.transform=`translateY(${(1-v)*10}px)`;
+    }
+  });
+
+  // ── Micro-pulse (7150ms) ──
+  setTimeout(()=>{
+    const nb=document.getElementById('name-block');
+    nb.style.transition='transform .24s cubic-bezier(.34,1.56,.64,1)';
+    nb.style.transform='scale(1.03)';
+    setTimeout(()=>{ nb.style.transform='scale(1)'; },260);
+  }, 7150);
+
+  // ── SORTIE (8650ms) ──
+  setTimeout(()=>{
+    allChars.forEach((ch,i)=>{
+      go({ from:0,to:1, dur:500, delay:i*30, fn:E.outExpo,
+        tick:(v)=>{
+          ch.style.opacity=1-v;
+          ch.style.transform=`translateY(${-v*50}px) scale(${1-v*.15})`;
+          ch.style.filter=`blur(${v*8}px)`;
+        }
+      });
+    });
+    [badge,subtitle].forEach(el=>{
+      go({ from:1,to:0, dur:380, delay:60, fn:E.outExpo,
+        tick:(v)=>{ el.style.opacity=v; }
+      });
+    });
+    go({ from:1,to:0, dur:380, delay:90, fn:E.outExpo,
+      tick:(v)=>{
+        underlineFill.style.opacity=v;
+        underlineFill.style.transform=`scaleX(${v})`;
+      }
+    });
+    go({ from:0,to:1, dur:600, delay:350, fn:E.inOutQ,
+      tick:(v)=>{ exitOverlay.style.opacity=v; },
+      done(){ setTimeout(runLoader,400); }
+    });
+  }, 8650);
+}
+
+runLoader();
+</script>
+</body>
+</html>
