@@ -93,7 +93,7 @@
         "slug": "cervo",
         "title": "Cervo",
         "shortDescription": "Application mobile de micro-apprentissage gamifié — quêtes courtes, mascotte évolutive et système de progression.",
-        "coverImage": "/uploads/cervo/CERVO COVER.png",
+        "coverImage": "/uploads/CERVO/CERVO COVER.png",
         "tags": [
           "Application mobile",
           "UI/UX",
@@ -107,9 +107,9 @@
         "detail": {
           "fullDescription": "Cervo est une expérience mobile de micro-apprentissage gamifiée, centrée sur le développement de petites compétences utiles au quotidien : productivité, créativité, organisation, apprentissage, bien-être, finance, numérique et santé mentale. L'idée : rendre l'apprentissage simple, rapide et motivant en transformant chaque notion en mini-quêtes accessibles en quelques minutes. Positionnée entre app de développement personnel, app d'apprentissage et jeu mobile, Cervo propose des actions courtes, concrètes et immédiatement applicables. L'utilisateur choisit son humeur du jour — focus, créatif ou rapide — et l'application lui propose des quêtes adaptées à son énergie. La mascotte Cervo accompagne l'utilisateur, célèbre ses victoires et évolue avec lui au fil de sa progression.",
           "images": [
-            "/uploads/cervo/CERVO COVER.png",
-            "/uploads/cervo/LOGO CERVO.png",
-            "/uploads/cervo/MASCOTTE Original.png"
+            "/uploads/CERVO/CERVO COVER.png",
+            "/uploads/CERVO/LOGO CERVO.png",
+            "/uploads/CERVO/MASCOTTE Original.png"
           ],
           "context": "Projet personnel — conception complète d'une application mobile de micro-apprentissage, de l'identité visuelle à l'interface.",
           "tools": [

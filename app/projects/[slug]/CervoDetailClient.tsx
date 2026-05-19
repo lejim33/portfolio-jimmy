@@ -62,22 +62,22 @@ const TECH_STACK = [
 ];
 
 const SCREENS = [
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%201.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%202.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%203.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%204.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%205.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%206.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%207.png",
-  "/uploads/cervo/carroussel%20app/CARROUSSEL%208.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%201.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%202.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%203.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%204.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%205.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%206.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%207.png",
+  "/uploads/CERVO/carroussel%20app/CARROUSSEL%208.png",
 ];
 
-const COVER        = "/uploads/cervo/CERVO%20COVER.png";
-const LOGO         = "/uploads/cervo/LOGO%20CERVO.png";
-const MASCOTTE     = "/uploads/cervo/MASCOTTE%20Original.png";
-const EVOLUTION     = "/uploads/cervo/CERVO%20Evolution.png";
-const PROCESS_COVER = "/uploads/cervo/Process%20crea%20cover.png";
-const PROCESS_LOGO  = "/uploads/cervo/Process%20crea%20logo.png";
+const COVER        = "/uploads/CERVO/CERVO%20COVER.png";
+const LOGO         = "/uploads/CERVO/LOGO%20CERVO.png";
+const MASCOTTE     = "/uploads/CERVO/MASCOTTE%20Original.png";
+const EVOLUTION     = "/uploads/CERVO/CERVO%20Evolution.png";
+const PROCESS_COVER = "/uploads/CERVO/Process%20crea%20cover.png";
+const PROCESS_LOGO  = "/uploads/CERVO/Process%20crea%20logo.png";
 
 function PhoneCarousel({ color }: { color: string }) {
   const [current, setCurrent] = useState(0);
