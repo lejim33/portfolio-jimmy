@@ -21,7 +21,7 @@ const CAROUSEL = [
 
 function PhoneStory({ src, label, index }: { src: string; label: string; index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
 
   const toggle = () => {
     const v = videoRef.current;
@@ -54,7 +54,8 @@ function PhoneStory({ src, label, index }: { src: string; label: string; index: 
           <div className="absolute inset-[5px] rounded-[1.8rem] overflow-hidden bg-black">
             <video
               ref={videoRef}
-              src={`${src}#t=0.1`}
+              src={src}
+              autoPlay
               loop
               muted
               playsInline
