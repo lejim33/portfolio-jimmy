@@ -54,10 +54,11 @@ function PhoneStory({ src, label, index }: { src: string; label: string; index: 
           <div className="absolute inset-[5px] rounded-[1.8rem] overflow-hidden bg-black">
             <video
               ref={videoRef}
-              src={src}
+              src={`${src}#t=0.1`}
               loop
               muted
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             />
             {/* Story progress bar */}
