@@ -58,7 +58,7 @@ function PhoneStory({ src, label, index }: { src: string; label: string; index: 
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="auto"
               className="w-full h-full object-cover"
             />
             {/* Story progress bar */}
